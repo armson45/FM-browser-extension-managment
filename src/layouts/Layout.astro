@@ -1,5 +1,6 @@
 ---
-import "@style/global.css";
+// import here all the global styles so they can be used in all the pages that use this layout
+import '../styles/global.css';
 import Header from "src/components/Header.astro";
 
 const { pageTitle } = Astro.props;
@@ -23,7 +24,8 @@ const { pageTitle } = Astro.props;
 	</body>
 </html>
 
-<style>
+<style is:global>
+
 	body {
 		background: var(--dark-gradient);
 		font-family: "Noto Sans", consolas;
