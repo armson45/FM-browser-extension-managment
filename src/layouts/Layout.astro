@@ -1,5 +1,6 @@
 ---
 import "@style/global.css";
+import Header from "src/components/Header.astro";
 
 const { pageTitle } = Astro.props;
 ---
@@ -10,18 +11,27 @@ const { pageTitle } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>David Sibrian {pageTitle ? '| ' + pageTitle : ''}</title>
+		<title>David Sibrian {pageTitle ? "| " + pageTitle : ""}</title>
 	</head>
-	<body>
-		<main>
-			<slot />
-		</main>
+	<body data-theme="dark">
+		<div class="container">
+			<Header />
+			<main>
+				<slot />
+			</main>
+		</div>
 	</body>
 </html>
 
 <style>
 	body {
-		background-color: var(--neutral-900);
-		font-family: 'Noto Sans', consolas;
+		background: var(--dark-gradient);
+		font-family: "Noto Sans", consolas;
+	}
+
+	.container {
+		max-width: 1440px;
+		width: 95%;
+		margin: 0 auto;
 	}
 </style>
