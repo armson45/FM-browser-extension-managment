@@ -1,0 +1,43 @@
+---
+
+---
+
+<section class="extension-list">
+    <h2>Extensions List</h2>
+    <section class="filtering">
+        <button class="filtering__btn">All</button>
+        <button class="filtering__btn">Active</button>
+        <button class="filtering__btn">Inactive</button>
+    </section>
+</section>
+
+<style>
+    .extension-list {
+        margin-top: 2rem;
+        color: var(--neutral-0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .filtering {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filtering__btn {
+        color: var(--neutral-0);
+        padding: 0.5rem 1.2rem;
+        border-radius: 5rem;
+        border: 1px solid var(--neutral-600);
+        background-color: var(--neutral-700);
+        cursor: pointer;
+    }
+
+    .filtering__btn:hover {
+        background-color: var(--red-500);
+        color: var(--neutral-900);
+    }
+</style>
