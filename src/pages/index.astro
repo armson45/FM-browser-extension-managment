@@ -23,8 +23,12 @@ import extensions from "../data/data.json";
 							/>
 						</div>
 						<section class="extension-text">
-							<h3 class="extension-text__name">{extension.name}</h3>
-							<p class="extension-text__description">{extension.description}</p>
+							<h3 class="extension-text__name">
+								{extension.name}
+							</h3>
+							<p class="extension-text__description">
+								{extension.description}
+							</p>
 						</section>
 					</div>
 					<div class="card-extension__bottom">
@@ -40,15 +44,20 @@ import extensions from "../data/data.json";
 <style>
 	.extension-container {
 		display: grid;
+		place-content: center;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 1rem;
-		margin-top: 1rem;
+		margin-block: 1.5rem;
 	}
-	
+
 	.card-extension {
 		background-color: var(--neutral-800);
 		outline: 1px solid var(--neutral-600);
 		padding: 1rem;
 		border-radius: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.info-extension {
@@ -89,19 +98,35 @@ import extensions from "../data/data.json";
 		border: 1px solid var(--neutral-600);
 		font-size: 14px;
 		cursor: pointer;
+		font-weight: 500;
+		
+		&:focus {
+			outline: 2px solid var(--red-400);
+			border-color: var(--neutral-800);
+			outline-offset: 1px;
+			background-color: var(--neutral-600);
+		}
+
+		&:hover {
+			background-color: var(--red-400);
+			color: var(--neutral-900);
+		}
 	}
 
 	.card-extension__bottom button:hover {
 		background-color: var(--red-500);
 	}
+
+	@media screen and (min-width: 768px) {
+	}
 </style>
 
 <script>
-
-	document.addEventListener('click', (e) => {
+	document.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;
-		if (target?.matches('.remove-btn')) {
-			//remove the extension from the active list but if ist already inactive throw an alert
+		if (target?.matches(".remove-btn")) {
+			//remove the extension from the list
+			console.log("Remove Extension");
 		}
 	});
 </script>

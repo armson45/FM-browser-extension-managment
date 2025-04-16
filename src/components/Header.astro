@@ -39,7 +39,7 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 2rem;
-        padding: 0.625rem 1rem;
+        padding: 0.3125rem 1rem;
         border-radius: 1rem;
         background-color: var(--neutral-800);
     }
@@ -49,12 +49,22 @@
     }
 
     .btn {
-        padding: 1rem;
+        padding: 0.8125rem;
         display: flex;
         align-items: center;
         border-radius: 16px;
         background-color: var(--neutral-700);
-        border: none;
+        border: 2px solid var(--neutral-800);
+    }
+
+    .toggle-theme:hover {
+        cursor: pointer;
+        background-color: var(--neutral-600);
+    }
+
+    .toggle-theme:focus {
+        outline: 3px solid var(--red-400);
+        background-color: var(--neutral-600);
     }
 
     .icon-theme:not(.active) {

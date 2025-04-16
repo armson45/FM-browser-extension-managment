@@ -37,7 +37,29 @@
     }
 
     .filtering__btn:hover {
-        background-color: var(--red-500);
-        color: var(--neutral-900);
+        background-color: var(--neutral-600);
+    }
+
+    .filtering__btn:focus {
+        outline: 2px solid var(--red-400);
+        border-color: var(--neutral-800);
+        outline-offset: 1px;
+        background-color: var(--neutral-600);
+    }
+
+    @media (width >= 768px) {
+        .extension-list {
+            flex-direction: row;
+            justify-content: space-between;
+        }
     }
 </style>
+
+<script>
+    const $btn = document.querySelectorAll(".filtering__btn");
+    document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (target.matches("filtering-btn")) {
+        }
+    });
+</script>
