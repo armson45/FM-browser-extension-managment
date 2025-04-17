@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FilteringList from "src/components/FilteringList.astro";
-import ToggleSwitch from "src/components/ToggleSwitch.astro";
 
 import extensions from "../data/data.json";
+import CardExtension from "src/components/CardExtension.astro";
 ---
 
 <Layout pageTitle="Inicio">
@@ -11,31 +11,12 @@ import extensions from "../data/data.json";
 	<section class="extension-container">
 		{
 			extensions.map((extension) => (
-				<article class="card-extension">
-					<div class="info-extension">
-						<div class="info-extension__logo">
-							<img
-								src={extension.logo}
-								loading="lazy"
-								alt=""
-								width="140"
-								height="100"
-							/>
-						</div>
-						<section class="extension-text">
-							<h3 class="extension-text__name">
-								{extension.name}
-							</h3>
-							<p class="extension-text__description">
-								{extension.description}
-							</p>
-						</section>
-					</div>
-					<div class="card-extension__bottom">
-						<button class="remove-btn">Remove</button>
-						<ToggleSwitch />
-					</div>
-				</article>
+				<CardExtension
+					logo={extension.logo}
+					name={extension.name}
+					description={extension.description}
+					isActive={extension.isActive}
+				/>
 			))
 		}
 	</section>
@@ -49,84 +30,53 @@ import extensions from "../data/data.json";
 		gap: 1rem;
 		margin-block: 1.5rem;
 	}
-
-	.card-extension {
-		background-color: var(--neutral-800);
-		outline: 1px solid var(--neutral-600);
-		padding: 1rem;
-		border-radius: 1rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	.info-extension {
-		display: flex;
-		align-items: start;
-		gap: 1rem;
-		text-align: left;
-		margin-bottom: 1.5rem;
-	}
-
-	.info-extension__logo img {
-		height: initial;
-		width: 100px;
-		min-width: 60px;
-		margin-top: 0;
-	}
-
-	.extension-text__name {
-		color: var(--neutral-0);
-	}
-
-	.extension-text__description {
-		color: var(--neutral-300);
-		font-size: 14px;
-	}
-
-	.card-extension__bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.card-extension__bottom button {
-		background-color: inherit;
-		color: var(--neutral-0);
-		padding: 0.5rem 1rem;
-		border-radius: 2rem;
-		border: 1px solid var(--neutral-600);
-		font-size: 14px;
-		cursor: pointer;
-		font-weight: 500;
-		
-		&:focus {
-			outline: 2px solid var(--red-400);
-			border-color: var(--neutral-800);
-			outline-offset: 1px;
-			background-color: var(--neutral-600);
-		}
-
-		&:hover {
-			background-color: var(--red-400);
-			color: var(--neutral-900);
-		}
-	}
-
-	.card-extension__bottom button:hover {
-		background-color: var(--red-500);
-	}
-
-	@media screen and (min-width: 768px) {
-	}
 </style>
 
 <script>
 	document.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;
 		if (target?.matches(".remove-btn")) {
-			//remove the extension from the list
 			console.log("Remove Extension");
 		}
 	});
+
+	document.addEventListener("click", (e) => {
+		const target = e.target as HTMLElement;
+		if (target?.matches(".filtering__btn")) {
+			document.querySelectorAll(".filtering__btn").forEach((btn) => {
+				btn.classList.remove("active");
+				document
+					.querySelectorAll(".card-extension")
+					.forEach((extension) => {
+						extension.classList.remove("hide");
+					});
+			});
+			target.classList.add("active");
+		}
+
+		showActive(target);
+		showInactive(target);
+	});
+
+	let showActive = (target: HTMLElement) => {
+		if (target.hasAttribute("data-active")) {
+			const $activeExc = document.querySelectorAll(
+				'[data-is-active="false"]',
+			);
+			$activeExc.forEach((extension) => {
+				extension.classList.add("hide");
+			});
+		}
+	};
+
+	let showInactive = (target: HTMLElement) => {
+		if (target.hasAttribute("data-inactive")) {
+			const $inactiveExc = document.querySelectorAll(
+				'[data-is-active="true"]',
+			);
+			$inactiveExc.forEach((extension) => {
+				extension.classList.add("hide");
+			});
+		}
+	};
 </script>

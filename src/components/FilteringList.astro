@@ -5,9 +5,11 @@
 <section class="extension-list">
     <h2>Extensions List</h2>
     <section class="filtering">
-        <button class="filtering__btn">All</button>
-        <button class="filtering__btn">Active</button>
-        <button class="filtering__btn">Inactive</button>
+        <button class="filtering__btn active" data-selected="true">All</button>
+        <button class="filtering__btn" data-active data-selected>Active</button>
+        <button class="filtering__btn" data-inactive data-selected="false"
+            >Inactive</button
+        >
     </section>
 </section>
 
@@ -40,11 +42,15 @@
         background-color: var(--neutral-600);
     }
 
-    .filtering__btn:focus {
+    .filtering__btn:focus-visible {
         outline: 2px solid var(--red-400);
         border-color: var(--neutral-800);
         outline-offset: 1px;
         background-color: var(--neutral-600);
+    }
+
+    .active {
+        background-color: var(--red-700);
     }
 
     @media (width >= 768px) {
@@ -55,11 +61,4 @@
     }
 </style>
 
-<script>
-    const $btn = document.querySelectorAll(".filtering__btn");
-    document.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        if (target.matches("filtering-btn")) {
-        }
-    });
-</script>
+<script></script>

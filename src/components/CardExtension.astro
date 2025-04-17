@@ -1,0 +1,105 @@
+---
+import ToggleSwitch from "./ToggleSwitch.astro";
+
+interface Props {
+    logo: string;
+    name: string;
+    description: string;
+    isActive: boolean;
+}
+
+const { logo, name, description, isActive } = Astro.props;
+---
+
+<article class="card-extension" data-is-active={isActive}>
+    <div class="info-extension">
+        <div class="info-extension__logo">
+            <img src={logo} loading="lazy" alt="" width="140" height="100" />
+        </div>
+        <section class="extension-text">
+            <h3 class="extension-text__name">
+                {name}
+            </h3>
+            <p class="extension-text__description">
+                {description}
+            </p>
+        </section>
+    </div>
+    <div class="card-extension__bottom">
+        <button class="remove-btn">Remove</button>
+        <ToggleSwitch />
+    </div>
+</article>
+
+<style>
+    .card-extension {
+        background-color: var(--neutral-800);
+        outline: 1px solid var(--neutral-600);
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .info-extension {
+        display: flex;
+        align-items: start;
+        gap: 1rem;
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-extension__logo img {
+        height: initial;
+        width: 100px;
+        min-width: 60px;
+        margin-top: 0;
+    }
+
+    .extension-text__name {
+        color: var(--neutral-0);
+    }
+
+    .extension-text__description {
+        color: var(--neutral-300);
+        font-size: 14px;
+    }
+
+    .card-extension__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-extension__bottom button {
+        background-color: inherit;
+        color: var(--neutral-0);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        border: 1px solid var(--neutral-600);
+        font-size: 14px;
+        cursor: pointer;
+        font-weight: 500;
+
+        &:focus {
+            outline: 2px solid var(--red-400);
+            border-color: var(--neutral-800);
+            outline-offset: 1px;
+            background-color: var(--neutral-600);
+        }
+
+        &:hover {
+            background-color: var(--red-400);
+            color: var(--neutral-900);
+        }
+    }
+
+    .card-extension__bottom button:hover {
+        background-color: var(--red-500);
+    }
+
+    .hide {
+        display: none;
+    }
+</style>

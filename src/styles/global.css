@@ -42,9 +42,7 @@
     src: url('/assets/fonts/noto-sans-v39-latin-700.woff2') format('woff2');
 }
 
-.active{
-    background-color: var(--red-700);
-}
+
 
 /* Reset */
 *,
