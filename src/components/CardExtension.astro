@@ -14,7 +14,13 @@ const { logo, name, description, isActive } = Astro.props;
 <article class="card-extension" data-is-active={isActive}>
     <div class="info-extension">
         <div class="info-extension__logo">
-            <img src={logo} loading="lazy" alt="" width="140" height="100" />
+            <img
+                src={logo}
+                loading="lazy"
+                alt={name + " icon"}
+                width="140"
+                height="100"
+            />
         </div>
         <section class="extension-text">
             <h3 class="extension-text__name">
@@ -103,3 +109,45 @@ const { logo, name, description, isActive } = Astro.props;
         display: none;
     }
 </style>
+
+<script>
+    let cardExtension = document.querySelectorAll(".card-extension");
+    
+    //code for active toggles of each card when the extension is active
+    cardExtension?.forEach((card) => {
+        let cardIsActiveExtension =
+            card?.attributes.getNamedItem("data-is-active")?.value;
+
+        if (cardIsActiveExtension === "true") {
+            card.querySelector(".checkbox")?.setAttribute("checked", "checked");
+        }
+    });
+
+    //code for toggle extensions between active and not active
+    cardExtension?.forEach((card) => {
+        card.querySelector(".checkbox")?.addEventListener("change", (e) => {
+            let target = e.target as HTMLInputElement;
+
+            if (target?.checked) {
+                card.setAttribute("data-is-active", "true");
+                // setTimeout(() => {
+                //     card.remove();
+                // }, 1000);
+            } else {
+                card.setAttribute("data-is-active", "false");
+                // setTimeout(() => {
+                //     card.remove();
+                // }, 1000);
+            }
+        });
+    });
+
+    //code for remove extension
+    cardExtension?.forEach((card) => {
+        card.querySelector(".remove-btn")?.addEventListener("click", (e) => {
+            card.remove();
+        });
+    });
+
+    
+</script>

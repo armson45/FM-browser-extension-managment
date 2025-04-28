@@ -35,13 +35,6 @@ import CardExtension from "src/components/CardExtension.astro";
 <script>
 	document.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;
-		if (target?.matches(".remove-btn")) {
-			console.log("Remove Extension");
-		}
-	});
-
-	document.addEventListener("click", (e) => {
-		const target = e.target as HTMLElement;
 		if (target?.matches(".filtering__btn")) {
 			document.querySelectorAll(".filtering__btn").forEach((btn) => {
 				btn.classList.remove("active");
@@ -61,7 +54,7 @@ import CardExtension from "src/components/CardExtension.astro";
 	let showActive = (target: HTMLElement) => {
 		if (target.hasAttribute("data-active")) {
 			const $activeExc = document.querySelectorAll(
-				'[data-is-active="false"]',
+				'[data-is-active="false"]'
 			);
 			$activeExc.forEach((extension) => {
 				extension.classList.add("hide");
