@@ -94,11 +94,11 @@
         localStorage.setItem("theme", theme);
     };
 
-    document.addEventListener("click", (e) => {
+    $icon.addEventListener("click", (e) => {
         const activeTheme =
             localStorage.getItem("theme") === "dark" ? "light" : "dark";
         const target = e.target as HTMLElement;
-        if (!target?.matches(".toggle-theme")) return;
+        // if (!target?.matches(".toggle-theme")) return;
         changeTheme(activeTheme);
     });
 
