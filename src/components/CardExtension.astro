@@ -39,8 +39,8 @@ const { logo, name, description, isActive } = Astro.props;
 
 <style>
     .card-extension {
-        background-color: var(--neutral-800);
-        outline: 1px solid var(--neutral-600);
+        background-color: var(--bg-main);
+        outline: 1px solid var(--secondary-color);
         padding: 1rem;
         border-radius: 1rem;
         display: flex;
@@ -58,17 +58,17 @@ const { logo, name, description, isActive } = Astro.props;
 
     .info-extension__logo img {
         height: initial;
-        width: 100px;
-        min-width: 60px;
+        max-width: 100px;
+        min-width: 65px;
         margin-top: 0;
     }
 
     .extension-text__name {
-        color: var(--neutral-0);
+        color: var(--text-color);
     }
 
     .extension-text__description {
-        color: var(--neutral-300);
+        color: var(--text-card);
         font-size: 14px;
     }
 
@@ -80,10 +80,10 @@ const { logo, name, description, isActive } = Astro.props;
 
     .card-extension__bottom button {
         background-color: inherit;
-        color: var(--neutral-0);
+        color: var(--text-color);
         padding: 0.5rem 1rem;
         border-radius: 2rem;
-        border: 1px solid var(--neutral-600);
+        border: 1px solid var(--secondary-color);
         font-size: 14px;
         cursor: pointer;
         font-weight: 500;
@@ -112,7 +112,7 @@ const { logo, name, description, isActive } = Astro.props;
 
 <script>
     let cardExtension = document.querySelectorAll(".card-extension");
-    
+
     //code for active toggles of each card when the extension is active
     cardExtension?.forEach((card) => {
         let cardIsActiveExtension =
@@ -148,6 +148,4 @@ const { logo, name, description, isActive } = Astro.props;
             card.remove();
         });
     });
-
-    
 </script>

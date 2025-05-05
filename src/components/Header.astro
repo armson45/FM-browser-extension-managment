@@ -39,13 +39,14 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 2rem;
-        padding: 0.3125rem 1rem;
+        padding: .625rem 1rem;
         border-radius: 1rem;
-        background-color: var(--neutral-800);
+        background-color: var(--bg-main);
+        box-shadow: 0px 3px 10px -8px hsl(225, 23%, 24%);
     }
 
     .logo__image path {
-        color: var(--neutral-0);
+        color: var(--text-color);
     }
 
     .btn {
@@ -53,7 +54,7 @@
         display: flex;
         align-items: center;
         border-radius: 16px;
-        background-color: var(--neutral-700);
+        background-color: var(--bg-btn);
         border: 2px solid var(--neutral-800);
     }
 
@@ -73,21 +74,35 @@
 </style>
 
 <script>
-    const $button = document.querySelector(".toggle-theme");
-    const $icon = document.querySelector(".theme-icon");
+    const $icon = document.querySelector(".theme-icon") as HTMLImageElement,
+        iconMoon = "/assets/images/icon-moon.svg",
+        iconSun = "/assets/images/icon-sun.svg";
 
-    const iconMoon = "/assets/images/icon-moon.svg";
-    const iconSun = "/assets/images/icon-sun.svg";
+    const preferedColorScheme = () => {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+
+    const changeTheme = (selectedTheme: string) => {
+        $icon.src = selectedTheme === "light" ? iconMoon : iconSun;
+        setTheme(selectedTheme);
+    };
+
+    const setTheme = (theme: string) => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    };
 
     document.addEventListener("click", (e) => {
+        const activeTheme =
+            localStorage.getItem("theme") === "dark" ? "light" : "dark";
         const target = e.target as HTMLElement;
         if (!target?.matches(".toggle-theme")) return;
-        if (document.body.dataset.theme == "dark") {
-            document.body.dataset.theme = "light";
-            $icon?.setAttribute("src", iconMoon);
-        } else if (document.body.dataset.theme == "light") {
-            document.body.dataset.theme = "dark";
-            $icon?.setAttribute("src", iconSun);
-        }
+        changeTheme(activeTheme);
+    });
+
+    document.addEventListener("DOMContentLoaded", (e) => {
+        changeTheme(localStorage.getItem("theme") || preferedColorScheme());
     });
 </script>
